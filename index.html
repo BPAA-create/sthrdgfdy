@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+
+<html lang="id" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Happy Birthday! ✨🎂</title>
+<!-- Google Fonts & Tailwind CDN & Canvas Confetti & Lucide Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Caveat:wght@600;700&amp;family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pastel: {
+              pink: '#FFD1DC',
+              'pink-deep': '#FF9EAA',
+              purple: '#E8DFF5',
+              lavender: '#C3B1E1',
+              yellow: '#FCF6BD',
+              green: '#D0F4DE',
+              blue: '#A9DEF9',
+              cream: '#FFF9F5',
+              accent: '#FF758F'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            handwritten: ['Caveat', 'cursive'],
+            display: ['Outfit', 'sans-serif']
+          },
+          animation: {
+            'float': 'float 3s ease-in-out infinite',
+            'float-slow': 'float 5s ease-in-out infinite',
+            'bounce-slow': 'bounce 2.5s infinite',
+            'pulse-soft': 'pulseSoft 2s ease-in-out infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-10px) rotate(2deg)' }
+            },
+            pulseSoft: {
+              '0%, 100%': { transform: 'scale(1)', opacity: 1 },
+              '50%': { transform: 'scale(1.05)', opacity: 0.9 }
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Custom Scrollbar & floating sparkles */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FFF5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #FFB3C1;
+      border-radius: 999px;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 30px -5px rgba(255, 158, 170, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+    }
+    .candle-flame {
+      transition: all 0.3s ease;
+      filter: drop-shadow(0 0 6px rgba(255, 183, 3, 0.8));
+    }
+    .flame-off {
+      opacity: 0;
+      transform: scale(0.2) translateY(-10px);
+      filter: none;
+    }
+    /* Floating background shapes */
+    .bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(50px);
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-[#FFF8F9] text-gray-800 font-sans selection:bg-pink-200 selection:text-pink-900 relative overflow-x-hidden min-h-screen">
+<!-- Ambient Aesthetic Blobs -->
+<div class="bg-shape w-72 h-72 md:w-96 md:h-96 bg-pastel-pink/50 top-0 left-0 -translate-x-1/4 -translate-y-1/4"></div>
+<div class="bg-shape w-80 h-80 md:w-[450px] md:h-[450px] bg-pastel-blue/40 top-1/3 right-0 translate-x-1/3"></div>
+<div class="bg-shape w-72 h-72 md:w-96 md:h-96 bg-pastel-yellow/50 bottom-1/4 left-10"></div>
+<div class="bg-shape w-80 h-80 md:w-[400px] md:h-[400px] bg-pastel-purple/50 bottom-0 right-10"></div>
+<!-- ========================================================================= -->
+<!-- EDIT MUSIK SENDIRI DI SINI: Ganti link src di bawah dengan file musikmu  -->
+<!-- sendiri (misal: 'musik.mp3' di folder yang sama atau direct link audio)  -->
+<!-- ========================================================================= -->
+<audio id="bg-music" loop="" preload="auto">
+<source src="https://assets.mixkit.co/music/preview/mixkit-happy-times-158.mp3" type="audio/mpeg"/>
+</audio>
+<!-- Main Container -->
+<main class="relative z-10 max-w-4xl mx-auto px-4 py-8 sm:py-14 space-y-12 md:space-y-16">
+<!-- ========================================== -->
+<!-- 1. #home-view: BERANDA UCAPAN UTAMA -->
+<!-- ========================================== -->
+<div class="space-y-12 md:space-y-16 transition-opacity duration-300" id="home-view">
+<!-- HERO SECTION -->
+<section class="text-center space-y-6 pt-4">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-pink-200 shadow-sm text-pink-600 text-xs sm:text-sm font-semibold tracking-wide animate-pulse-soft">
+<span class="">✨ Special Day for Special One ✨</span>
+</div>
+<div class="space-y-2">
+<p class="font-handwritten text-2xl sm:text-3xl text-pink-500">Selamat Ulang Tahun,</p>
+<!-- EDIT NAMA TEMAN DI SINI -->
+<h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-gray-900 font-display">
+<span class="bg-gradient-to-r from-pink-500 via-purple-500 to-rose-400 bg-clip-text text-transparent">
+          Sahabat Terbaikku! 🌸
+        </span>
+</h1>
+<!-- EDIT PESAN SINGKAT DI SINI -->
+<p class="text-sm sm:text-base text-gray-600 max-w-lg mx-auto font-medium">
+        Semoga harimu penuh tawa, kehangatan, dan semua impian manismu menjadi nyata tahun ini!
+      </p>
+</div>
+<!-- Quick Action Chips -->
+<div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+<button class="px-5 py-2.5 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-400 text-white font-semibold text-sm shadow-lg shadow-pink-300/60 hover:shadow-pink-400/80 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2" onclick="triggerConfetti()" type="button">
+<span class="">🎉 Tabur Konfeti!</span>
+</button>
+<button class="px-5 py-2.5 rounded-2xl bg-white/90 text-pink-600 border border-pink-200 font-semibold text-sm hover:bg-pink-50 hover:-translate-y-0.5 transition-all flex items-center gap-2 shadow-sm" onclick="scrollToSection('cakeSection')" type="button">
+<span class="">🎂 Tiup Lilin Kue</span>
+</button>
+<button class="px-5 py-2.5 rounded-2xl bg-pastel-purple/80 text-purple-700 border border-purple-200 font-semibold text-sm hover:bg-purple-100 hover:-translate-y-0.5 transition-all flex items-center gap-2 shadow-sm" onclick="scrollToSection('secretSection')" type="button">
+<span class="">💌 Buka Pesan Rahasia</span>
+</button>
+<!-- TOMBOL KE GALERI (KLIK DI SINI - HEADER CHIP) -->
+<button class="px-5 py-2.5 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all flex items-center gap-2 cursor-pointer" onclick="showGallery()" title="Buka Galeri Kenangan Lengkap" type="button">
+<span class="">📸 Buka Galeri Lengkap</span>
+</button>
+</div>
+</section>
+<!-- INTERACTIVE BIRTHDAY CAKE SECTION -->
+<section class="glass-card rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden" id="cakeSection">
+<div class="max-w-md mx-auto space-y-6">
+<div>
+<span class="text-xs font-bold uppercase tracking-wider text-pink-500 bg-pink-100 px-3 py-1 rounded-full">Interaktif</span>
+<h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mt-2 font-display">Buat Harapan &amp; Tiup Lilin</h2>
+<p class="text-xs sm:text-sm text-gray-500 mt-1" id="candleHint">Klik tombol di bawah atau ketuk nyala lilin untuk meniupnya!</p>
+</div>
+<!-- Interactive SVG Cake -->
+<div class="relative py-4 flex justify-center items-center">
+<div class="relative cursor-pointer select-none group" onclick="toggleCandle()">
+<svg class="w-56 h-56 sm:w-64 sm:h-64 drop-shadow-xl" fill="none" viewbox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="120" cy="205" fill="#E2E8F0" rx="90" ry="12"></ellipse>
+<ellipse cx="120" cy="202" fill="#FFFFFF" rx="85" ry="9"></ellipse>
+<rect fill="#FFCCD5" height="48" rx="8" width="140" x="50" y="145"></rect>
+<path d="M50 155 Q 64 165, 78 155 Q 92 145, 106 155 Q 120 165, 134 155 Q 148 145, 162 155 Q 176 165, 190 155 V 145 H 50 Z" fill="#FFF0F3"></path>
+<circle cx="75" cy="175" fill="#A9DEF9" r="2.5"></circle>
+<circle cx="100" cy="180" fill="#FCF6BD" r="2.5"></circle>
+<circle cx="130" cy="173" fill="#D0F4DE" r="2.5"></circle>
+<circle cx="160" cy="178" fill="#E8DFF5" r="2.5"></circle>
+<rect fill="#FFF0F5" height="42" rx="6" width="90" x="75" y="105"></rect>
+<path d="M75 115 C 85 125, 90 115, 100 123 C 110 130, 115 118, 125 124 C 135 130, 145 115, 155 125 C 160 120, 163 115, 165 115 V 105 H 75 Z" fill="#FFB3C1"></path>
+<circle cx="88" cy="103" fill="#FF4D6D" r="5"></circle>
+<circle cx="120" cy="102" fill="#FF4D6D" r="5"></circle>
+<circle cx="152" cy="103" fill="#FF4D6D" r="5"></circle>
+<rect fill="#A9DEF9" height="34" rx="2" stroke="#E2E8F0" stroke-width="0.5" width="6" x="117" y="70"></rect>
+<line stroke="#FF9EAA" stroke-width="2" x1="117" x2="123" y1="76" y2="78"></line>
+<line stroke="#FF9EAA" stroke-width="2" x1="117" x2="123" y1="84" y2="86"></line>
+<line stroke="#FF9EAA" stroke-width="2" x1="117" x2="123" y1="92" y2="94"></line>
+<line stroke="#4A5568" stroke-linecap="round" stroke-width="1.5" x1="120" x2="120" y1="70" y2="64"></line>
+<g class="candle-flame" id="candleFlame">
+<ellipse cx="120" cy="54" fill="#FFAA00" opacity="0.8" rx="7" ry="12"></ellipse>
+<ellipse cx="120" cy="55" fill="#FFF3B0" rx="4" ry="8"></ellipse>
+<circle cx="120" cy="57" fill="#FFFFFF" r="2.5"></circle>
+</g>
+<g class="opacity-0 transition-opacity duration-700" id="smokePuff">
+<path d="M120 60 C 117 52, 125 45, 119 38 C 114 32, 122 25, 118 18" fill="none" stroke="#CBD5E1" stroke-dasharray="2 3" stroke-linecap="round" stroke-width="2"></path>
+</g>
+</svg>
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-amber-300/40 rounded-full blur-xl pointer-events-none transition-all duration-300" id="candleGlow"></div>
+</div>
+</div>
+<div class="flex justify-center gap-3">
+<button class="px-6 py-2.5 rounded-full bg-pink-500 hover:bg-pink-600 active:scale-95 text-white font-medium text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer" id="blowCandleBtn" onclick="toggleCandle()" type="button">
+<svg class="lucide lucide-wind w-4 h-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12.8 19.6A2 2 0 1 0 14 16H2"></path><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"></path><path d="M9.8 4.4A2 2 0 1 1 11 8H2"></path></svg>
+<span class="" id="blowBtnLabel">Tiup Lilin 💨</span>
+</button>
+<button class="px-4 py-2.5 rounded-full bg-gray-100 hover:bg-gray-200 active:scale-95 text-gray-700 font-medium text-sm transition-all flex items-center gap-1.5 cursor-pointer" onclick="resetCandle()" title="Nyalakan lilin lagi" type="button">
+<svg class="lucide lucide-sparkles w-4 h-4 text-amber-500" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
+<span class="">Nyalakan Lilin</span>
+</button>
+</div>
+<!-- Fixed Height Reserved Area to Eliminate Layout Shifts -->
+<div class="min-h-[58px] flex items-center justify-center transition-all duration-300 mt-2" id="candle-message-container">
+<div class="w-full p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-sm font-medium opacity-0 pointer-events-none transition-all duration-300 transform scale-95" id="wishBanner">
+    ✨ "Harapan telah dipanjatkan! Semoga semua doa baikmu dikabulkan semesta." ✨
+  </div>
+</div>
+</div>
+</section>
+<!-- PHOTO MEMORY PREVIEW (POLAROID STYLE) -->
+<section class="space-y-6">
+<div class="text-center space-y-2">
+<span class="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-100 px-3 py-1 rounded-full">Galeri Kenangan</span>
+<h2 class="text-3xl font-bold text-gray-800 font-display">Momen-Momen Manis Bersamamu 📸</h2>
+<p class="text-gray-500 text-sm max-w-md mx-auto">Klik foto untuk melihat dalam resolusi penuh atau kunjungi galeri lengkap!</p>
+</div>
+<!-- Polaroid Grid Preview (3 Foto Utama) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-2">
+<!-- EDIT URL FOTO PREVIEW 1 DI SINI -->
+<div class="group bg-white p-3.5 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:-rotate-2 hover:rotate-0 hover:-translate-y-2 border border-pink-100 cursor-pointer" onclick="showGallery()">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-pink/30">
+<img alt="Birthday Party Joy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4QSfWujn1ORQXbbaPRjThyNx2Z2HgovcsP6g8pjblgaBRtJ4ZyrvLe1oZYEne79O1gR7IPebfXa1O_F0sk8qDskB3U70AILQWM8bRKbleKYb2nRzQEFIP8gIqmJYrIaUO_iDTmJ6wd2-VEgqQDmvskI6EgojysV2wO3fpQrmKkYbvvHTmT6rUoARh82cXYaOzqgh-3KOhvWmQ9ivgXI5z7CUHCO2OnkV_cpHSqtmWLN79lA5slDwy"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/90 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Buka Galeri 🔍</span>
+</div>
+</div>
+<div class="mt-4 text-center">
+<p class="font-handwritten text-xl font-bold text-gray-700">Tawa &amp; Kebahagiaan</p>
+<p class="text-xs text-gray-400 mt-0.5">Selalu ada cerita lucu saat sama kamu ✨</p>
+</div>
+</div>
+<!-- EDIT URL FOTO PREVIEW 2 DI SINI -->
+<div class="group bg-white p-3.5 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:rotate-2 hover:rotate-0 hover:-translate-y-2 border border-pink-100 cursor-pointer" onclick="showGallery()">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-yellow/30">
+<img alt="Aesthetic Balloons" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGamcZEkDudeJBV6nzcoDFyXzxq7fR960ZA9Wb6zu4H7o8FZeVKp3BORSaq7-gxJYLKBEgHzEox3fjO_Pt7Y3Voi7kQSEqc7Mr3Z_Uwm4rbfD2OVs2rO4CSzX9fPrqa90NffGPAK4B_C_jzI8jQAaDas1SRJWa8AXjNlDeqx-EUpx2I6R1o8U6-GLAexir9vyq-wyKYN1S5TI4pJct6riIZFq3pDAwglPcQyPE7rd2Fsi-NaeEvRJz"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/90 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Buka Galeri 🔍</span>
+</div>
+</div>
+<div class="mt-4 text-center">
+<p class="font-handwritten text-xl font-bold text-gray-700">Petualangan Seru</p>
+<p class="text-xs text-gray-400 mt-0.5">Menjelajah tempat baru bersama 🎈</p>
+</div>
+</div>
+<!-- EDIT URL FOTO PREVIEW 3 DI SINI -->
+<div class="group bg-white p-3.5 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:-rotate-1 hover:rotate-0 hover:-translate-y-2 border border-pink-100 cursor-pointer" onclick="showGallery()">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-blue/30">
+<img alt="Birthday Celebration" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDma_cyy_9xM5EImKxPaDXpzxwpSkphGRFCed5-szonmkTIumHE_nQExZHAgj8YdN5eJkekuutzeMegw0AUJbRIucyXR_b7Tlb7wYNOuuehf3bSLxHL6F2HVgJPPAdyxj-wVxFcOYc5vo6oFduQs8PFpoqKJgD4KeP9SiksS-IFDDRd4jRKgYGdVQIEKiyp40Fk-j3rUFFe9Az0TF6zIC0_nGQHQdfWiNwM7OGQRQDA6QxlyWl5kMn5"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/90 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Buka Galeri 🔍</span>
+</div>
+</div>
+<div class="mt-4 text-center">
+<p class="font-handwritten text-xl font-bold text-gray-700">Persahabatan Abadi</p>
+<p class="text-xs text-gray-400 mt-0.5">Semoga kita terus saling mendukung 💖</p>
+</div>
+</div>
+</div>
+<!-- ============================================== -->
+<!-- TOMBOL KE GALERI (KLIK DI SINI) -->
+<!-- ============================================== -->
+<div class="flex justify-center mt-6 mb-2">
+<button class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white hover:bg-pink-50 text-pink-600 font-semibold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all border border-pink-200 group cursor-pointer" id="btnViewAllGallery" onclick="showGallery()" type="button">
+<span class="">Lihat Semua Kenangan Foto 📸</span>
+<svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</section>
+<!-- SECRET MESSAGE SECTION (INTERACTIVE UNLOCK) -->
+<section class="glass-card rounded-3xl p-6 sm:p-10 border border-purple-200/80 shadow-xl relative overflow-hidden" id="secretSection">
+<div class="absolute -right-8 -bottom-8 w-44 h-44 text-purple-200/40 pointer-events-none">
+<svg class="lucide lucide-mail w-full h-full" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect height="16" rx="2" width="20" x="2" y="4"></rect></svg>
+</div>
+<div class="max-w-xl mx-auto space-y-6 text-center">
+<div>
+<span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-3 py-1 rounded-full">Khusus Untukmu</span>
+<h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mt-2 font-display">Surat Rahasia Ulang Tahun 💌</h2>
+<p class="text-sm text-gray-600 mt-1">Pesan ini terkunci dan hanya bisa dibuka oleh orang yang sedang berulang tahun!</p>
+</div>
+<!-- Locked Envelope State -->
+<div class="p-8 border-2 border-dashed border-pink-300 rounded-2xl bg-white/60 space-y-4" id="lockedState">
+<div class="w-16 h-16 mx-auto rounded-2xl bg-pastel-pink flex items-center justify-center text-pink-600 shadow-inner animate-bounce-slow">
+<svg class="lucide lucide-lock w-8 h-8" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+</div>
+<div>
+<h3 class="font-semibold text-gray-800">Amplop Masih Tersegel Rapi</h3>
+<p class="text-xs text-gray-500 max-w-xs mx-auto mt-1">Tekan tombol di bawah untuk membuka segel lilin dan membaca surat ini.</p>
+</div>
+<button class="px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold text-sm shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center gap-2 mx-auto cursor-pointer" onclick="unlockSecretMessage()" type="button">
+<svg class="lucide lucide-key w-4 h-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m2 21 9.6-9.6"></path><path d="m7.5 15.5 2.3 2.3a1 1 0 0 1 0 1.4l-2.1 2.1a1 1 0 0 1-1.4 0L4 19"></path><circle cx="15.5" cy="7.5" r="5.5"></circle></svg>
+<span class="">Buka Segel Surat ✨</span>
+</button>
+</div>
+<!-- EDIT SURAT RAHASIA DI SINI -->
+<div class="hidden text-left p-6 sm:p-8 bg-amber-50/90 rounded-2xl border border-amber-200/80 shadow-inner space-y-4 transition-all duration-500" id="unlockedState">
+<div class="flex items-center justify-between border-b border-amber-200/60 pb-3">
+<div class="flex items-center gap-2 text-amber-800 font-semibold text-sm">
+<svg class="lucide lucide-heart w-4 h-4 text-rose-500 fill-rose-500" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path></svg>
+<span class="">Dari Sahabatmu yang Paling Beruntung</span>
+</div>
+<span class="text-xs text-amber-700 bg-amber-200/70 px-2.5 py-0.5 rounded-full">Rahasia Terbuka</span>
+</div>
+<div class="font-handwritten text-xl sm:text-2xl text-gray-800 space-y-3 leading-relaxed">
+<p class="">Hai kamu! Selamat bertambah usia yaaa! 🎉</p>
+<p class="">Terima kasih sudah lahir ke dunia dan menjadi sosok yang begitu luar biasa, baik hati, dan selalu membawa energi positif untuk orang-orang di sekitarmu.</p>
+<p class="">Di usiamu yang baru ini, aku berdoa agar kamu senantiasa diberi kesehatan, dilapangkan rezekinya, didekatkan pada orang-orang tulus, dan diberi keteguhan hati untuk menggapai mimpi-mimpimu.</p>
+<p class="">Ingat ya, kalau lagi lelah, jangan ragu untuk istirahat. Kamu sudah berjuang sehebat ini, dan aku sangat bangga padamu! 🤍</p>
+</div>
+<div class="pt-3 border-t border-amber-200/60 flex items-center justify-between text-xs text-gray-500">
+<span class="">Salam hangat &amp; peluk jauh 🌸</span>
+<button class="text-purple-600 hover:underline flex items-center gap-1 cursor-pointer" onclick="lockSecretMessage()" type="button">
+<svg class="lucide lucide-lock w-3.5 h-3.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+<span class="">Kunci Kembali</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- FOOTER DENGAN PANDUAN PENGGUNA -->
+<footer class="text-center pt-4 pb-12 space-y-4">
+<div class="inline-flex items-center gap-2 text-xs text-gray-400">
+<span class="">Dibuat dengan</span>
+<svg class="lucide lucide-heart w-3.5 h-3.5 text-pink-400 fill-pink-400" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path></svg>
+<span class="">• Siap dibagikan ke laptop &amp; smartphone</span>
+</div>
+<details class="max-w-md mx-auto text-left glass-card p-3 rounded-2xl border border-pink-200/60 text-xs text-gray-600 cursor-pointer">
+<summary class="font-semibold text-pink-600 flex items-center justify-between select-none">
+<span class="">💡 Cara Mengubah Nama &amp; Foto (Mudah):</span>
+<svg class="lucide lucide-chevron-down w-4 h-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"></path></svg>
+</summary>
+<div class="mt-2 space-y-1.5 text-[11px] text-gray-500 border-t border-pink-100 pt-2">
+<p class="">1. Buka file HTML ini dengan Notepad / VS Code / Text Editor apapun.</p>
+<p class="">2. Cari komentar <code>&lt;!-- EDIT NAMA TEMAN DI SINI --&gt;</code> untuk mengganti nama.</p>
+<p class="">3. Ganti link di dalam tag <code>&lt;!-- EDIT URL FOTO ... --&gt;</code> dengan foto kalian.</p>
+<p class="">4. Simpan lalu upload index.html ke Netlify Drop atau hosting pilihanmu!</p>
+</div>
+</details>
+</footer>
+</div>
+<!-- ========================================== -->
+<!-- 2. #gallery-view: KONTEN GALERI FOTO LENGKAP -->
+<!-- ========================================== -->
+<div class="hidden space-y-10 transition-opacity duration-300" id="gallery-view">
+<!-- Header Galeri & Tombol Kembali Atas -->
+<header class="flex flex-col sm:flex-row items-center justify-between gap-4 glass-card p-5 sm:p-7 rounded-3xl border border-pink-200/80 shadow-md">
+<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-pink-600 hover:bg-pink-50 border border-pink-200 font-semibold text-xs sm:text-sm shadow-sm hover:shadow active:scale-95 transition-all group cursor-pointer" onclick="showHome()" type="button">
+<span class="transition-transform group-hover:-translate-x-1 font-bold">←</span>
+<span class="">Kembali ke Ucapan Utama</span>
+</button>
+<div class="text-center sm:text-right">
+<span class="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-100 px-3 py-1 rounded-full">Koleksi Kenangan</span>
+<h1 class="text-xl sm:text-2xl font-bold text-gray-800 font-display mt-1">Galeri Kenangan Indah Bersamamu 🌸</h1>
+</div>
+</header>
+<!-- Filter / Category Tabs -->
+<div class="flex flex-wrap items-center justify-center gap-2 pt-1">
+<button class="gallery-filter-btn px-4 py-1.5 rounded-full bg-pink-500 text-white text-xs font-medium shadow-sm transition-all cursor-pointer" data-filter="all" onclick="filterGallery('all')" type="button">Semua Foto ✨</button>
+<button class="gallery-filter-btn px-4 py-1.5 rounded-full bg-white text-gray-600 hover:bg-pink-50 border border-pink-100 text-xs font-medium shadow-sm transition-all cursor-pointer" data-filter="trip" onclick="filterGallery('trip')" type="button">Liburan &amp; Jalan 🚗</button>
+<button class="gallery-filter-btn px-4 py-1.5 rounded-full bg-white text-gray-600 hover:bg-pink-50 border border-pink-100 text-xs font-medium shadow-sm transition-all cursor-pointer" data-filter="hangout" onclick="filterGallery('hangout')" type="button">Nongkrong &amp; Kuliner ☕</button>
+<button class="gallery-filter-btn px-4 py-1.5 rounded-full bg-white text-gray-600 hover:bg-pink-50 border border-pink-100 text-xs font-medium shadow-sm transition-all cursor-pointer" data-filter="birthday" onclick="filterGallery('birthday')" type="button">Ulang Tahun 🎂</button>
+</div>
+<!-- Polaroid Gallery Grid (Koleksi Foto Lengkap) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-2">
+<!-- EDIT URL FOTO GALERI 1 DI SINI -->
+<div class="gallery-item group bg-white p-4 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:-rotate-1 hover:rotate-0 hover:-translate-y-2 border border-pink-100" data-category="birthday">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-pink/30 cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuC7jHaVJYWvG5Xc2dzvObvg-aLlK68GyqIZEmaZ_ql0NA7E_sjdL8dExgxcCbT3i4j4OhYKidKBaO_GJ9BY1WS9OlDeXrqhqJKljjUOKIObG0eK2-5Fhp_4koz69W-kEjttNUcghNmk3XEzil8xEnu-aeAPpiHX8kDJ9e53Gz7ndkmfgjcbjfebOKk6_4PoriGAkEwqBXiK6mmj8XA56myR80vUkP7vsye2Ht2QTYSVTmzN4bC9MJ99', 'Pesta Ulang Tahun Paling Berkesan', 'Momen tiup lilin dan harapan yang selalu kuingat.')">
+<img alt="Pesta Ulang Tahun" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7jHaVJYWvG5Xc2dzvObvg-aLlK68GyqIZEmaZ_ql0NA7E_sjdL8dExgxcCbT3i4j4OhYKidKBaO_GJ9BY1WS9OlDeXrqhqJKljjUOKIObG0eK2-5Fhp_4koz69W-kEjttNUcghNmk3XEzil8xEnu-aeAPpiHX8kDJ9e53Gz7ndkmfgjcbjfebOKk6_4PoriGAkEwqBXiK6mmj8XA56myR80vUkP7vsye2Ht2QTYSVTmzN4bC9MJ99"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/95 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Perbesar Foto 🔍</span>
+</div>
+</div>
+<div class="mt-4 space-y-1.5">
+<div class="flex items-center justify-between">
+<p class="font-handwritten text-xl font-bold text-gray-800">Tawa &amp; Lilin Pertama 🎂</p>
+<button class="like-btn flex items-center gap-1 text-xs text-gray-500 hover:text-rose-500 transition-colors cursor-pointer" onclick="toggleLike(this)" type="button">
+<span class="heart-icon">🤍</span>
+<span class="like-count">12</span>
+</button>
+</div>
+<p class="text-xs text-gray-500">Waktu itu kuenya hampir miring tapi kita malah ketawa sampai nangis!</p>
+<span class="inline-block text-[10px] text-pink-600 bg-pink-50 px-2 py-0.5 rounded-full font-medium">#UlangTahun</span>
+</div>
+</div>
+<!-- EDIT URL FOTO GALERI 2 DI SINI -->
+<div class="gallery-item group bg-white p-4 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:rotate-2 hover:rotate-0 hover:-translate-y-2 border border-pink-100" data-category="trip">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-yellow/30 cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuCyEY7vZ3J0BMYtAHoXXkbZUWY-h5VzucQJjl_-nXTQArdLQO0_KYdJrGgbUgXU1doP3C4qkfknUYryDmRpN_XENa5MqiL43W1E1vO5xLiWl1TauHqLd8y6WtEPhaCSCSJdxNvxN-gSniWuS2j4q5r63dX7VYXf_BVroYZ314QDJOQAuvz8Jft08xQxaLeHk9Z5_ZCVGMsWQx4vjCTiDY_y7Afr7_sYd82uRbyP5KN1pH7ejn55Vmr5', 'Petualangan Naik Kereta Senja', 'Menikmati sunset di pinggir jendela sambil dengerin musik favorit.')">
+<img alt="Petualangan Liburan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyEY7vZ3J0BMYtAHoXXkbZUWY-h5VzucQJjl_-nXTQArdLQO0_KYdJrGgbUgXU1doP3C4qkfknUYryDmRpN_XENa5MqiL43W1E1vO5xLiWl1TauHqLd8y6WtEPhaCSCSJdxNvxN-gSniWuS2j4q5r63dX7VYXf_BVroYZ314QDJOQAuvz8Jft08xQxaLeHk9Z5_ZCVGMsWQx4vjCTiDY_y7Afr7_sYd82uRbyP5KN1pH7ejn55Vmr5"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/95 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Perbesar Foto 🔍</span>
+</div>
+</div>
+<div class="mt-4 space-y-1.5">
+<div class="flex items-center justify-between">
+<p class="font-handwritten text-xl font-bold text-gray-800">Sunset Kereta Senja 🌅</p>
+<button class="like-btn flex items-center gap-1 text-xs text-gray-500 hover:text-rose-500 transition-colors cursor-pointer" onclick="toggleLike(this)" type="button">
+<span class="heart-icon">🤍</span>
+<span class="like-count">28</span>
+</button>
+</div>
+<p class="text-xs text-gray-500">Perjalanan jauh gak berasa capek karena obrolan random kita.</p>
+<span class="inline-block text-[10px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full font-medium">#Liburan</span>
+</div>
+</div>
+<!-- EDIT URL FOTO GALERI 3 DI SINI -->
+<div class="gallery-item group bg-white p-4 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:-rotate-2 hover:rotate-0 hover:-translate-y-2 border border-pink-100" data-category="hangout">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-blue/30 cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuAkX4Pw3OsRi24iOIaxzfjAfzdh7BT-PN5f-SSKD3PPGywQJOki8uoHzBMRJHLMR3B8YA8Z56RndDWHeUCqk77P9QjywnG0Wotqv-_uHOL8Be9bSqhwolY7Q9ORwgt7BhhgW-SSLtRFzBZTyBxTsrekvPUijsmawfuuLtdLq4boIZzlFURrPA74WLIkQMpUnKKmTqbvtDXOOObtmYmrxPv4ITk54u2WOTVEQmv_qgXo1B6_5hPt_aHd', 'Nongkrong Ngopi Tanpa Rencana', 'Niatnya cuma 10 menit, malah ngobrol sampai kafe mau tutup.')">
+<img alt="Nongkrong Kafe" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkX4Pw3OsRi24iOIaxzfjAfzdh7BT-PN5f-SSKD3PPGywQJOki8uoHzBMRJHLMR3B8YA8Z56RndDWHeUCqk77P9QjywnG0Wotqv-_uHOL8Be9bSqhwolY7Q9ORwgt7BhhgW-SSLtRFzBZTyBxTsrekvPUijsmawfuuLtdLq4boIZzlFURrPA74WLIkQMpUnKKmTqbvtDXOOObtmYmrxPv4ITk54u2WOTVEQmv_qgXo1B6_5hPt_aHd"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/95 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Perbesar Foto 🔍</span>
+</div>
+</div>
+<div class="mt-4 space-y-1.5">
+<div class="flex items-center justify-between">
+<p class="font-handwritten text-xl font-bold text-gray-800">Kopi &amp; Cerita Random ☕</p>
+<button class="like-btn flex items-center gap-1 text-xs text-gray-500 hover:text-rose-500 transition-colors cursor-pointer" onclick="toggleLike(this)" type="button">
+<span class="heart-icon">🤍</span>
+<span class="like-count">19</span>
+</button>
+</div>
+<p class="text-xs text-gray-500">Selalu jadi tempat cerita paling nyaman di kala dunia lagi bising.</p>
+<span class="inline-block text-[10px] text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full font-medium">#Hangout</span>
+</div>
+</div>
+<!-- EDIT URL FOTO GALERI 4 DI SINI -->
+<div class="gallery-item group bg-white p-4 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:rotate-1 hover:rotate-0 hover:-translate-y-2 border border-pink-100" data-category="trip">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-pink/30 cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuDgPj7EXCDPivhnMHMVMGtZV6k3A0gS_F32iHe7q4xICAZ1e3DLZ-DTR4k9P1irUwfXFxKMJwYItqhP-kYyYWGvkfPB3LnWu4IeDZBXD0yAePvIkfCsIalfaA2zJca9ncD1TwOOlikpKJ74BZsfk2o4nZfmDSC5_TgTMvgbnUAX8tfKQu2tm25cdQMoMO1560Z2fJHD3xT88IZC6qXLr3OFEzDqrniNcpMzKnxu2tiQ8ldCIzKSicMh', 'Eksplor Pantai Cerah', 'Angin sepoi-sepoi dan es kelapa muda terenak.')">
+<img alt="Pantai Kenangan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgPj7EXCDPivhnMHMVMGtZV6k3A0gS_F32iHe7q4xICAZ1e3DLZ-DTR4k9P1irUwfXFxKMJwYItqhP-kYyYWGvkfPB3LnWu4IeDZBXD0yAePvIkfCsIalfaA2zJca9ncD1TwOOlikpKJ74BZsfk2o4nZfmDSC5_TgTMvgbnUAX8tfKQu2tm25cdQMoMO1560Z2fJHD3xT88IZC6qXLr3OFEzDqrniNcpMzKnxu2tiQ8ldCIzKSicMh"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/95 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Perbesar Foto 🔍</span>
+</div>
+</div>
+<div class="mt-4 space-y-1.5">
+<div class="flex items-center justify-between">
+<p class="font-handwritten text-xl font-bold text-gray-800">Deburan Ombak &amp; Bahagia 🌊</p>
+<button class="like-btn flex items-center gap-1 text-xs text-gray-500 hover:text-rose-500 transition-colors cursor-pointer" onclick="toggleLike(this)" type="button">
+<span class="heart-icon">🤍</span>
+<span class="like-count">34</span>
+</button>
+</div>
+<p class="text-xs text-gray-500">Harus diagendakan lagi liburan bareng ke pantai lain tahun depan!</p>
+<span class="inline-block text-[10px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full font-medium">#Liburan</span>
+</div>
+</div>
+<!-- EDIT URL FOTO GALERI 5 DI SINI -->
+<div class="gallery-item group bg-white p-4 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:-rotate-1 hover:rotate-0 hover:-translate-y-2 border border-pink-100" data-category="hangout">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-purple/50 cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuB_Nu_wdnFB3KslVbHisiwr5dc8eRNBj9PqezouIkp9MC6seVLY4Qh3PbYwBZjiBTO2kVuHN_5INg7rBFRg_InJaKUN6bdxOv9FmaTwkfadlRbSPJv3XKrc2L1kcDWtQ1gxDwTOj9OAKAgmutlbzQcuWbRlFWbA-i6GPwixsPWsCRDhWa7fG7AeiTV8uC4G91M8ek3bDsK7iYtkt2YNqyi00XEO6xTPD8sqERa-eY2t_NFUNaq2C0NJ', 'Foto Photobox Konyol', 'Pose seru tanpa jaim yang selalu bikin senyum tiap kali dilihat.')">
+<img alt="Photobox Sahabat" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_Nu_wdnFB3KslVbHisiwr5dc8eRNBj9PqezouIkp9MC6seVLY4Qh3PbYwBZjiBTO2kVuHN_5INg7rBFRg_InJaKUN6bdxOv9FmaTwkfadlRbSPJv3XKrc2L1kcDWtQ1gxDwTOj9OAKAgmutlbzQcuWbRlFWbA-i6GPwixsPWsCRDhWa7fG7AeiTV8uC4G91M8ek3bDsK7iYtkt2YNqyi00XEO6xTPD8sqERa-eY2t_NFUNaq2C0NJ"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/95 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Perbesar Foto 🔍</span>
+</div>
+</div>
+<div class="mt-4 space-y-1.5">
+<div class="flex items-center justify-between">
+<p class="font-handwritten text-xl font-bold text-gray-800">Photobox Tanpa Jaim 📸</p>
+<button class="like-btn flex items-center gap-1 text-xs text-gray-500 hover:text-rose-500 transition-colors cursor-pointer" onclick="toggleLike(this)" type="button">
+<span class="heart-icon">🤍</span>
+<span class="like-count">45</span>
+</button>
+</div>
+<p class="text-xs text-gray-500">Foto ini wajib dipajang di meja belajar atau dinding kamar!</p>
+<span class="inline-block text-[10px] text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full font-medium">#Hangout</span>
+</div>
+</div>
+<!-- EDIT URL FOTO GALERI 6 DI SINI -->
+<div class="gallery-item group bg-white p-4 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:rotate-2 hover:rotate-0 hover:-translate-y-2 border border-pink-100" data-category="birthday">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-yellow/50 cursor-pointer" onclick="openLightbox('https://lh3.googleusercontent.com/aida-public/AB6AXuBHJBon_zX3JvI3Ki8jwuNKSSgLNEux65wcGTzbiSV3XvwJuyUbMFcfjNz4pdcSBDftCpxREi-rZwfxPYnwxKodSulyK4tUp6f_SeSGl0XcO1U2cV-xrP9yXI3SlCtJBrD3LQoWxxNoswOEk40fx9VB6Jih5oMPE0XHeD_ywd_oZI7yO6hhqWCivci9SCwVnXJgCJKUZA_Xlt4RwCAGI9u5tZXBxf0B1m9ZP5TFOcSxoNkJ_RBi7pNO', 'Kado &amp; Surat Harapan', 'Momen sederhana tapi penuh kehangatan persahabatan sejati.')">
+<img alt="Kado Spesial" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHJBon_zX3JvI3Ki8jwuNKSSgLNEux65wcGTzbiSV3XvwJuyUbMFcfjNz4pdcSBDftCpxREi-rZwfxPYnwxKodSulyK4tUp6f_SeSGl0XcO1U2cV-xrP9yXI3SlCtJBrD3LQoWxxNoswOEk40fx9VB6Jih5oMPE0XHeD_ywd_oZI7yO6hhqWCivci9SCwVnXJgCJKUZA_Xlt4RwCAGI9u5tZXBxf0B1m9ZP5TFOcSxoNkJ_RBi7pNO"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/95 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Perbesar Foto 🔍</span>
+</div>
+</div>
+<div class="mt-4 space-y-1.5">
+<div class="flex items-center justify-between">
+<p class="font-handwritten text-xl font-bold text-gray-800">Kado Spesial Untukmu 🎁</p>
+<button class="like-btn flex items-center gap-1 text-xs text-gray-500 hover:text-rose-500 transition-colors cursor-pointer" onclick="toggleLike(this)" type="button">
+<span class="heart-icon">🤍</span>
+<span class="like-count">22</span>
+</button>
+</div>
+<p class="text-xs text-gray-500">Bukan barang mahalnya, tapi kenangan dan niat tulus di baliknya.</p>
+<span class="inline-block text-[10px] text-pink-600 bg-pink-50 px-2 py-0.5 rounded-full font-medium">#UlangTahun</span>
+</div>
+</div>
+<!-- EDIT URL FOTO GALERI 7 DI SINI -->
+<div class="gallery-item group bg-white p-4 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:-rotate-2 hover:rotate-0 hover:-translate-y-2 border border-pink-100" data-category="trip">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-pink/30 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&amp;fit=crop&amp;w=800&amp;q=80', 'Piknik Sore Ceria 🧺', 'Sore santai di taman penuh cemilan enak dan tawa tanpa henti.')">
+<img alt="Piknik Bersama Sahabat" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdQZdvcQfeTGaTbl_VMRGnlg0-NOgC89XW_gyPG5KOo2slZKEoSOu6LQtUxs-A1_fA6qOWr5k9kVg6y7zIqw14wpR-FbMi3Nh92QruL1_VQWuk9TvA1CnBvAZ1DPY2ksT1-03K-i5lJdPUvZmop6St1L332VIB1E6uFXpCa_PtEFyHGuz4mxEgGr8f6kIr9j1Q3RDGV_qRAe5FC-6-AW_wiC6sLVosq6SCppPSCySBV8lvw8wxy5ec"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/95 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Perbesar Foto 🔍</span>
+</div>
+</div>
+<div class="mt-4 space-y-1.5">
+<div class="flex items-center justify-between">
+<p class="font-handwritten text-xl font-bold text-gray-800">Piknik Sore Ceria 🧺</p>
+<button class="like-btn flex items-center gap-1 text-xs text-gray-500 hover:text-rose-500 transition-colors cursor-pointer" onclick="toggleLike(this)" type="button">
+<span class="heart-icon">🤍</span>
+<span class="like-count">37</span>
+</button>
+</div>
+<p class="text-xs text-gray-500">Tikar piknik warna-warni dan obrolan tentang masa depan yang indah.</p>
+<span class="inline-block text-[10px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full font-medium">#Liburan</span>
+</div>
+</div>
+<!-- EDIT URL FOTO GALERI 8 DI SINI -->
+<div class="gallery-item group bg-white p-4 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:rotate-1 hover:rotate-0 hover:-translate-y-2 border border-pink-100" data-category="hangout">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-yellow/30 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&amp;fit=crop&amp;w=800&amp;q=80', 'Selfie Spontan di Jalan 📸', 'Muka konyol tanpa filter tapi justru ini foto paling berharga.')">
+<img alt="Selfie Sahabat" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ5nBJfcUjAf_npUmsNkLzVqpt_QpL5wHI8iYfAZ0E9GD0htEdnojbltps23RbiAEqMPCQ9o_BwvNhfqhoGncN3bb-lZJmvSNhogH1vIVIr3kc1FteWSH7a36vO_Fbp67yrobXr7vn_nBhnvPEuS6lGWXJhuPksb_mpwZDM9fg1TnO6oD7PjGyb205VqFyK1Vwlu1pmp3T5V0gbJZC3zmSK84NgEN_MxhZnY7bRBFwMlj4W7Bh_5ao"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/95 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Perbesar Foto 🔍</span>
+</div>
+</div>
+<div class="mt-4 space-y-1.5">
+<div class="flex items-center justify-between">
+<p class="font-handwritten text-xl font-bold text-gray-800">Selfie Spontan di Jalan 📸</p>
+<button class="like-btn flex items-center gap-1 text-xs text-gray-500 hover:text-rose-500 transition-colors cursor-pointer" onclick="toggleLike(this)" type="button">
+<span class="heart-icon">🤍</span>
+<span class="like-count">51</span>
+</button>
+</div>
+<p class="text-xs text-gray-500">Tiba-tiba berhenti di trotoar hanya demi ngepasin golden hour!</p>
+<span class="inline-block text-[10px] text-purple-600 bg-purple-50 px-2 py-0.5 rounded-full font-medium">#Hangout</span>
+</div>
+</div>
+<!-- EDIT URL FOTO GALERI 9 DI SINI -->
+<div class="gallery-item group bg-white p-4 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:-rotate-1 hover:rotate-0 hover:-translate-y-2 border border-pink-100" data-category="trip">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-blue/30 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&amp;fit=crop&amp;w=800&amp;q=80', 'Road Trip Dadakan 🚗', 'Lagu diputar kencang-kencang sambil nyanyi fals bareng sepanjang jalan.')">
+<img alt="Road Trip Sahabat" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ5HEfoyxOAARdEuxkZhzOgZKlt_toPMMrYCelY_U9GaEs2Nt7EkEheVzORSeKvSZjzw6HnF_8YSBS8fqLNKMKZFbEoc8JnAvRejphpv60boAKH3k06kdPNgGbqqdoAogWdVYcV6TFyxZq4kVRLNdxjURs_EwddVdAqDD1wh3CDewXbwZJ8qrJZyXQw98R-m8c2DmBVfufmauNpRqgjdxenNYEiFVUvoLbREcx44wJTdMjuzQoRLY7"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/95 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Perbesar Foto 🔍</span>
+</div>
+</div>
+<div class="mt-4 space-y-1.5">
+<div class="flex items-center justify-between">
+<p class="font-handwritten text-xl font-bold text-gray-800">Road Trip Dadakan 🚗</p>
+<button class="like-btn flex items-center gap-1 text-xs text-gray-500 hover:text-rose-500 transition-colors cursor-pointer" onclick="toggleLike(this)" type="button">
+<span class="heart-icon">🤍</span>
+<span class="like-count">40</span>
+</button>
+</div>
+<p class="text-xs text-gray-500">Tanpa rencana matang tapi jadi perjalanan paling berkesan.</p>
+<span class="inline-block text-[10px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full font-medium">#Liburan</span>
+</div>
+</div>
+<!-- EDIT URL FOTO GALERI 10 DI SINI -->
+<div class="gallery-item group bg-white p-4 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:rotate-2 hover:rotate-0 hover:-translate-y-2 border border-pink-100" data-category="hangout">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-pink/30 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1543807535-eceef0bc6599?auto=format&amp;fit=crop&amp;w=800&amp;q=80', 'Konser Favorit Kita 🎶', 'Suara habis gara-gara teriak bareng pas lagu kesukaan dinyanyiin.')">
+<img alt="Konser Musik Seru" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtIcrm1ZmVxwG2kmEDHBy9-ul9Xlhu2mPGNKwa4xnJlkXEtCaQW8YCUPsb-yvLC-gidOE5nl8lv8Mak2vWGlGkeMVU3X8ux0UJOuCHjSr7fZpzGvEi2yZoSoFCovwv7_YU-b--jWzsgA5Lv0nU83cdfkQKlQKduUN5Q3NZit6iqAp-esU5xZmyqB13Y9WI7OFOeZdLLLCqTUvlZ8tBl0khqqKaUGWjLG1DnZ9iZkMhL43FfWeuZLJH"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/95 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Perbesar Foto 🔍</span>
+</div>
+</div>
+<div class="mt-4 space-y-1.5">
+<div class="flex items-center justify-between">
+<p class="font-handwritten text-xl font-bold text-gray-800">Konser Favorit Kita 🎶</p>
+<button class="like-btn flex items-center gap-1 text-xs text-gray-500 hover:text-rose-500 transition-colors cursor-pointer" onclick="toggleLike(this)" type="button">
+<span class="heart-icon">🤍</span>
+<span class="like-count">63</span>
+</button>
+</div>
+<p class="text-xs text-gray-500">Energi panggung dan euforia bareng kamu yang gak tertandingi!</p>
+<span class="inline-block text-[10px] text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full font-medium">#Hangout</span>
+</div>
+</div>
+<!-- EDIT URL FOTO GALERI 11 DI SINI -->
+<div class="gallery-item group bg-white p-4 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:-rotate-2 hover:rotate-0 hover:-translate-y-2 border border-pink-100" data-category="birthday">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-yellow/50 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&amp;fit=crop&amp;w=800&amp;q=80', 'Kejutan Kue Spesial 🧁', 'Momen ekspresi kaget pas dibawain kue ulang tahun tiba-tiba.')">
+<img alt="Kejutan Kue Ulang Tahun" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-UqvbAxH_YIXU2Upa2H38Vqq5TNq5uHwGdoptKbi9IkK3gao3lbjxTCJTi6FCYbss7usFvvdqYkA-XQGAeormQt2trlRgNi7xy1M8UECHhxszSEHxLayxCMlsCrOuOt3aKq9xn5gc3f0kMw2i5HQ8D9a6NE1Re1nNlUB3eUrMpsHC-rfVqHKx6LMxvv7nJ1wIpdamb0L2FR6q15Zsz2uO9IUlceVeAWYbz8KCRGTTrfpJk0dj6YF5"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/95 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Perbesar Foto 🔍</span>
+</div>
+</div>
+<div class="mt-4 space-y-1.5">
+<div class="flex items-center justify-between">
+<p class="font-handwritten text-xl font-bold text-gray-800">Kejutan Kue Spesial 🧁</p>
+<button class="like-btn flex items-center gap-1 text-xs text-gray-500 hover:text-rose-500 transition-colors cursor-pointer" onclick="toggleLike(this)" type="button">
+<span class="heart-icon">🤍</span>
+<span class="like-count">48</span>
+</button>
+</div>
+<p class="text-xs text-gray-500">Ekspresi terharunya terekam abadi dan gak bakal terlupakan.</p>
+<span class="inline-block text-[10px] text-pink-600 bg-pink-50 px-2 py-0.5 rounded-full font-medium">#UlangTahun</span>
+</div>
+</div>
+<!-- EDIT URL FOTO GALERI 12 DI SINI -->
+<div class="gallery-item group bg-white p-4 pb-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform sm:rotate-1 hover:rotate-0 hover:-translate-y-2 border border-pink-100" data-category="trip">
+<div class="relative overflow-hidden rounded-xl aspect-square bg-pastel-purple/50 cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=800&amp;q=80', 'Senja di Tepian Pantai 🌅', 'Menatap langit jingga sambil bersyukur punya sahabat sebaik dirimu.')">
+<img alt="Senja Pantai Bersama" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQva-1fDYqBiABI5d6yNkZvA2LD-b68QQZSqUHmZJlctHe0cIV081YzHKx5Ga7_5_DtWXu8D4QKqbmIvYL7lnjZJPE4epdPALDW2oqNEfwbBQyY_l2ASb1KDm63I-2PVXxHEU9KhG-7a3m25VXh-xHtJ3j6w3rV9enxtZJC3qJzVU6RVvlvv1FN8sGladkBxR9J3hPnOWIhqxJaQJ5-Cd2YFoRqrH2F2pNvqP_PmNLLsz4LVLNzN0-"/>
+<div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="bg-white/95 text-gray-800 text-xs px-3 py-1 rounded-full font-medium shadow-sm">Perbesar Foto 🔍</span>
+</div>
+</div>
+<div class="mt-4 space-y-1.5">
+<div class="flex items-center justify-between">
+<p class="font-handwritten text-xl font-bold text-gray-800">Senja di Tepian Pantai 🌅</p>
+<button class="like-btn flex items-center gap-1 text-xs text-gray-500 hover:text-rose-500 transition-colors cursor-pointer" onclick="toggleLike(this)" type="button">
+<span class="heart-icon">🤍</span>
+<span class="like-count">59</span>
+</button>
+</div>
+<p class="text-xs text-gray-500">Momen tenang yang mengingatkan betapa berharganya setiap detik bersama.</p>
+<span class="inline-block text-[10px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full font-medium">#Liburan</span>
+</div>
+</div></div>
+<!-- Bottom Gallery Navigation Button back to Home -->
+<div class="flex flex-col items-center justify-center gap-3 pt-6 pb-12">
+<button class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all cursor-pointer" onclick="showHome()" type="button">
+<span class="font-bold">←</span>
+<span class="">Kembali ke Ucapan Utama</span>
+</button>
+<p class="text-xs text-gray-400">Kamu bisa kembali kapan saja untuk meniup lilin kue lagi!</p>
+</div>
+</div>
+<!-- MODAL LIGHTBOX FOTO -->
+<div class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 transition-all duration-300" id="photoLightbox" onclick="closeLightbox(event)">
+<div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-pink-200 transform scale-95 transition-all" id="lightboxCard" onclick="event.stopPropagation()">
+<div class="relative">
+<img alt="Foto Kenangan" class="w-full max-h-[60vh] object-contain bg-gray-100" id="lightboxImg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWlh4K12IFtBl0rzTZMoepQWI1nRpwApwp9uvKOfgbsgTcy8f0c72gvPSpvQDq1E10iM1SdL5dFpD7XdNmZpyzXgL326RlGn6M4lD0k4nZKwE2jH3QfSzMYGMX4Kn2lRLHfUiKgx4qEVKwOzaM8yBD-BRHqhmlRyjBTa305jAy0xAaTaKU9dsz_QJ8fHyyexWxoS-3-CDGa3tgZkz1gQCZY88xZ9814n-j63Vh9xTIKwr6mCTp1klb"/>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 hover:bg-black/75 text-white flex items-center justify-center text-sm font-bold cursor-pointer" onclick="closeLightbox()" type="button">
+        ✕
+      </button>
+</div>
+<div class="p-5 space-y-1.5">
+<h3 class="font-display font-bold text-gray-800 text-lg sm:text-xl" id="lightboxTitle">Momen Kenangan</h3>
+<p class="text-xs sm:text-sm text-gray-600" id="lightboxDesc">Deskripsi foto kenangan.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- JAVASCRIPT LOGIC -->
+<script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // ==========================================
+    // AUTO MUSIC PLAYBACK (AUTOPLAY + GESTURE)
+    // ==========================================
+    const bgAudio = document.getElementById('bg-music');
+    let musicStarted = false;
+
+    function startMusic() {
+      if (musicStarted || !bgAudio) return;
+      bgAudio.play().then(() => {
+        musicStarted = true;
+        removeMusicListeners();
+      }).catch(err => {
+        // Awaiting user gesture
+      });
+    }
+
+    function onFirstUserInteraction() {
+      if (musicStarted) return;
+      if (bgAudio) {
+        bgAudio.play().then(() => {
+          musicStarted = true;
+          removeMusicListeners();
+        }).catch(e => console.log('Audio wait gesture:', e));
+      }
+    }
+
+    function removeMusicListeners() {
+      ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
+        document.removeEventListener(evt, onFirstUserInteraction);
+      });
+    }
+
+    // Try autoplay on load and attach user gesture listeners
+    window.addEventListener('DOMContentLoaded', () => {
+      startMusic();
+      ['click', 'touchstart', 'scroll', 'keydown'].forEach(evt => {
+        document.addEventListener(evt, onFirstUserInteraction, { passive: true, once: false });
+      });
+    });
+
+    // ==========================================
+    // GLOBAL VIEW NAVIGATION FUNCTIONS
+    // ==========================================
+    function showGallery() {
+      const homeView = document.getElementById('home-view');
+      const galleryView = document.getElementById('gallery-view');
+      if (homeView && galleryView) {
+        homeView.classList.add('hidden');
+        galleryView.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        lucide.createIcons();
+      }
+    }
+
+    function showHome() {
+      const homeView = document.getElementById('home-view');
+      const galleryView = document.getElementById('gallery-view');
+      if (homeView && galleryView) {
+        galleryView.classList.add('hidden');
+        homeView.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        lucide.createIcons();
+      }
+    }
+
+    // Fallback backward compatibility alias
+    function switchToPage(pageId) {
+      if (pageId === 'pageGallery' || pageId === 'gallery-view') {
+        showGallery();
+      } else {
+        showHome();
+      }
+    }
+
+    // 1. Confetti Effect (Multiple Styles)
+    function triggerConfetti() {
+      confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#FF9EAA', '#FFD1DC', '#A9DEF9', '#FCF6BD', '#E8DFF5', '#FF758F']
+      });
+
+      // Side cannons for extra aesthetic flair
+      setTimeout(() => {
+        confetti({
+          particleCount: 40,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: ['#FF9EAA', '#A9DEF9', '#FCF6BD']
+        });
+        confetti({
+          particleCount: 40,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: ['#FF9EAA', '#E8DFF5', '#D0F4DE']
+        });
+      }, 200);
+    }
+
+    // Auto confetti celebration on first load
+    window.addEventListener('load', () => {
+      setTimeout(triggerConfetti, 800);
+      startMusic();
+    });
+
+    // 2. Interactive Birthday Cake Candle (NO LAYOUT SHIFT)
+    let isCandleLit = true;
+
+    function toggleCandle() {
+      const flame = document.getElementById('candleFlame');
+      const glow = document.getElementById('candleGlow');
+      const smoke = document.getElementById('smokePuff');
+      const wishBanner = document.getElementById('wishBanner');
+      const blowBtnLabel = document.getElementById('blowBtnLabel');
+      const hint = document.getElementById('candleHint');
+
+      if (isCandleLit) {
+        // Blow out candle smoothly without layout shifts
+        flame.classList.add('flame-off');
+        glow.classList.add('opacity-0');
+        smoke.classList.remove('opacity-0');
+        
+        // Show banner with opacity/transform (reserved container height prevents layout shift)
+        wishBanner.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+        wishBanner.classList.add('opacity-100', 'pointer-events-auto', 'scale-100');
+
+        blowBtnLabel.textContent = 'Lilin Padam ✨';
+        hint.textContent = 'Lilin sudah ditiup! Harapanmu sedang terbang ke langit.';
+        isCandleLit = false;
+
+        // Big confetti on blow out!
+        triggerConfetti();
+      } else {
+        resetCandle();
+      }
+    }
+
+    function resetCandle() {
+      const flame = document.getElementById('candleFlame');
+      const glow = document.getElementById('candleGlow');
+      const smoke = document.getElementById('smokePuff');
+      const wishBanner = document.getElementById('wishBanner');
+      const blowBtnLabel = document.getElementById('blowBtnLabel');
+      const hint = document.getElementById('candleHint');
+
+      flame.classList.remove('flame-off');
+      glow.classList.remove('opacity-0');
+      smoke.classList.add('opacity-0');
+      
+      // Hide banner smoothly
+      wishBanner.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+      wishBanner.classList.remove('opacity-100', 'pointer-events-auto', 'scale-100');
+
+      blowBtnLabel.textContent = 'Tiup Lilin 💨';
+      hint.textContent = 'Klik tombol di bawah atau ketuk nyala lilin untuk meniupnya!';
+      isCandleLit = true;
+    }
+
+    // 3. Secret Message Unlocking Logic
+    function unlockSecretMessage() {
+      const lockedState = document.getElementById('lockedState');
+      const unlockedState = document.getElementById('unlockedState');
+
+      lockedState.classList.add('hidden');
+      unlockedState.classList.remove('hidden');
+
+      // Play soft celebratory confetti
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: { y: 0.7 },
+        colors: ['#C3B1E1', '#FFD1DC', '#FFF9F5']
+      });
+    }
+
+    function lockSecretMessage() {
+      const lockedState = document.getElementById('lockedState');
+      const unlockedState = document.getElementById('unlockedState');
+
+      unlockedState.classList.add('hidden');
+      lockedState.classList.remove('hidden');
+    }
+
+    // 5. Gallery Filter Functionality
+    function filterGallery(category) {
+      const items = document.querySelectorAll('.gallery-item');
+      const buttons = document.querySelectorAll('.gallery-filter-btn');
+
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-filter') === category) {
+          btn.className = 'gallery-filter-btn px-4 py-1.5 rounded-full bg-pink-500 text-white text-xs font-medium shadow-sm transition-all cursor-pointer';
+        } else {
+          btn.className = 'gallery-filter-btn px-4 py-1.5 rounded-full bg-white text-gray-600 hover:bg-pink-50 border border-pink-100 text-xs font-medium shadow-sm transition-all cursor-pointer';
+        }
+      });
+
+      items.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+
+    // 6. Photo Lightbox Functionality
+    function openLightbox(imgSrc, title, desc) {
+      const modal = document.getElementById('photoLightbox');
+      const img = document.getElementById('lightboxImg');
+      const titleEl = document.getElementById('lightboxTitle');
+      const descEl = document.getElementById('lightboxDesc');
+
+      img.src = imgSrc;
+      titleEl.textContent = title || 'Momen Kenangan';
+      descEl.textContent = desc || '';
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('photoLightbox');
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // 7. Photo Like Functionality
+    function toggleLike(btn) {
+      const heart = btn.querySelector('.heart-icon');
+      const countEl = btn.querySelector('.like-count');
+      let count = parseInt(countEl.textContent, 10) || 0;
+
+      if (heart.textContent === '🤍') {
+        heart.textContent = '💖';
+        btn.classList.add('text-rose-500');
+        countEl.textContent = count + 1;
+        confetti({
+          particleCount: 15,
+          spread: 40,
+          origin: { y: 0.8 }
+        });
+      } else {
+        heart.textContent = '🤍';
+        btn.classList.remove('text-rose-500');
+        countEl.textContent = Math.max(0, count - 1);
+      }
+    }
+
+    // Smooth Scroll Helper
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body></html>
